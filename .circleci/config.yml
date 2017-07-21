@@ -1,0 +1,14 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: vvakame/review
+    steps:
+      - checkout
+      - run:
+          name: Build PDF
+          command: rake clean pdf
+          working_directory: ./articles
+      - store_artifacts:
+          path: ./articles/book.pdf
+          destination: book.pdf
