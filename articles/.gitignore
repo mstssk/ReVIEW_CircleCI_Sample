@@ -1,0 +1,13 @@
+*.html
+!_cover.html
+*.txt
+*.xml
+*.tex
+
+*-pdf/
+
+*.pdf
+*.epub
+
+*.css
+!style.css
