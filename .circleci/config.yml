@@ -1,4 +1,4 @@
-version: 2
+version: 2.1
 jobs:
   build:
     docker:
@@ -9,9 +9,14 @@ jobs:
           name: Build PDF
           command: rake clean pdf
           working_directory: ./articles
+      - run:
+          name: Preparing artifacts
+          command: |
+            mkdir -p /tmp/artifacts
+            cp ./articles/*.pdf /tmp/artifacts
       - store_artifacts:
-          path: ./articles/book.pdf
-          destination: book.pdf
+          path: /tmp/artifacts
+          destination: /
       - run:
           name: Upload to Dropbox
           command: ./upload_dropbox.sh ./articles/book.pdf ${DROPBOX_TOKEN}
